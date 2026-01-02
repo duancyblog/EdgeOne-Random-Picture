@@ -57,11 +57,6 @@ export default function HomeClient() {
         <h1 className="text-5xl font-black tracking-tight mb-4 bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
           EdgeOne Pic
         </h1>
-        
-        <p className="text-white/50 text-base font-medium mb-10 leading-relaxed">
-          极简、极速、极美。<br/>
-          智能识别设备，分发每一张精选画作。
-        </p>
 
         <div className="flex flex-col gap-3">
           <a 
