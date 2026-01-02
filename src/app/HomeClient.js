@@ -57,6 +57,17 @@ export default function HomeClient() {
         <h1 className="text-5xl font-black tracking-tight mb-4 bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
           EdgeOne Pic
         </h1>
+        
+        <div className="text-white/50 text-sm font-medium mb-10 leading-relaxed">
+          <p className="mb-2">随机图片 API 接口</p>
+          <code className="block bg-white/5 rounded-lg py-2 px-3 text-xs border border-white/10 mb-3">
+            /api/random
+          </code>
+          <div className="flex flex-col gap-1 text-[10px] opacity-60">
+            <p>指定类型: ?type=[pc|mobile]</p>
+            <p>JSON 格式: ?redirect=false</p>
+          </div>
+        </div>
 
         <div className="flex flex-col gap-3">
           <a 
