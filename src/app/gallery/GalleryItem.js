@@ -7,10 +7,31 @@ export default function GalleryItem({ img, idx, onClick }) {
   const imgRef = useRef(null);
 
   useEffect(() => {
-    if (imgRef.current?.complete) {
-      setIsLoaded(true);
+    const img = imgRef.current;
+    if (!img) return;
+
+    const handleLoad = () => setIsLoaded(true);
+
+    if (img.complete) {
+      handleLoad();
+    } else {
+      img.addEventListener('load', handleLoad);
+      img.addEventListener('error', handleLoad);
+      
+      // 使用 decode() 预解码
+      if (img.decode) {
+        img.decode().then(handleLoad).catch(handleLoad);
+      }
     }
-  }, []);
+
+    const timer = setTimeout(handleLoad, 3000);
+
+    return () => {
+      img.removeEventListener('load', handleLoad);
+      img.removeEventListener('error', handleLoad);
+      clearTimeout(timer);
+    };
+  }, [img.src]);
 
   return (
     <div 
@@ -19,11 +40,10 @@ export default function GalleryItem({ img, idx, onClick }) {
     >
       <img 
         ref={imgRef}
-        src={`/images/${img.src}`} 
+        src={encodeURI(`/images/${img.src}`)} 
         alt="gallery image" 
-        className={`w-full h-full object-cover block transition-all duration-500 ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+        className={`w-full h-full object-cover block transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
         loading={idx < 12 ? "eager" : "lazy"}
-        decoding="async"
         onLoad={() => setIsLoaded(true)}
         onError={() => setIsLoaded(true)}
       />

@@ -81,7 +81,7 @@ export default function GalleryClient({ initialImages }) {
             
             <div className="flex-1 bg-black flex items-center justify-center min-w-0">
               <img 
-                src={`/images/${selectedImage.src}`} 
+                src={encodeURI(`/images/${selectedImage.src}`)} 
                 alt="preview" 
                 className="max-w-full max-h-[60vh] md:max-h-[90vh] object-contain"
               />

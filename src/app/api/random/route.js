@@ -27,7 +27,7 @@ export async function GET(request) {
   }
 
   const randomImage = list[Math.floor(Math.random() * list.length)];
-  const redirectUrl = `/images/${randomImage.src}`;
+  const redirectUrl = `/images/${encodeURI(randomImage.src)}`;
 
   if (searchParams.get('redirect') === 'false') {
     return NextResponse.json({ url: redirectUrl });
